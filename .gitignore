@@ -1,0 +1,10 @@
+# Folders
+node_modules/
+data/db/
+
+# Config files
+.env
+docker-compose.yml
+
+# Loaded when running npm install
+package-lock.json

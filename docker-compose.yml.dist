@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  app:
+    image: node:12
+    volumes:
+      - ./:/app
+    ports:
+      - :3000
+    working_dir: /app
+    depends_on:
+      - mongodb
+    environment:
+      NODE_ENV: development
+    command: npm run dev
+    restart: always
+  mongodb:
+    image: mongo
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - :27017
