@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5c5e054f8aa64722916d2efbd296c123)](https://www.codacy.com/manual/Lorddistrict/APIPSSI2k19?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Lorddistrict/APIPSSI2k19&amp;utm_campaign=Badge_Grade)
+
 # How run it
 
 Hi ! Don't be shy and try me ;)
