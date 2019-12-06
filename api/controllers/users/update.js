@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { UserSchema } from "../../models/userModel";
-import jsonwebtoken from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const User = mongoose.model('User', UserSchema);
 
@@ -9,8 +9,21 @@ export const updateUser = (req, res) => {
         uuid: req.params.userUID
     }, req.body, { new: true }, (error, user) => {
         if (error) {
-            res.status(400).send(error);
+            res.status(400);
+
+            return res.json({
+                status: '400',
+                message: 'User not found',
+                user: user,
+            });
+        } else {
+            res.status(200);
+
+            return res.json({
+                status: '200',
+                message: 'User updated !',
+                user: user,
+            });
         }
-        res.status(200).json(user);
     });
 };

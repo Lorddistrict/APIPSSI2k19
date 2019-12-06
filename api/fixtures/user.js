@@ -10,20 +10,22 @@ export const generateFakeUsers = () => {
     faker.locale = "fr";
 
     // Generate test user
-    let testuser = new User();
+    let dummyUser = new User();
 
-    testuser.uuid = generateToken();
-    testuser.email = 'user@user.com';
-    testuser.password = generateEncryptedGenerator();
-    testuser.save();
+    dummyUser.uuid = generateToken();
+    dummyUser.email = 'user@user.com';
+    dummyUser.password = generateEncryptedGenerator();
+    dummyUser.role = 'USER';
+    dummyUser.save();
 
     // Generate test admin
-    let testadmin = new User();
+    let dummyAdmin = new User();
 
-    testadmin.uuid = generateToken();
-    testadmin.email = 'admin@admin.com';
-    testadmin.password = generateEncryptedGenerator();
-    testadmin.save();
+    dummyAdmin.uuid = generateToken();
+    dummyAdmin.email = 'admin@admin.com';
+    dummyAdmin.password = generateEncryptedGenerator();
+    dummyAdmin.role = 'ADMIN';
+    dummyAdmin.save();
 
     for (let i = 0; i < 2; i++) {
         let user = new User();
@@ -31,6 +33,7 @@ export const generateFakeUsers = () => {
         user.uuid = generateToken();
         user.email = faker.internet.email();
         user.password = generateEncryptedGenerator();
+        user.role = 'USER';
         user.save();
     }
 };

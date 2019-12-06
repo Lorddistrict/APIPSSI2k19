@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { UserSchema } from "../../models/userModel";
 import crypto from 'crypto-js';
+import jwt from "jsonwebtoken";
 
 const User = mongoose.model('User', UserSchema);
 
@@ -9,8 +10,8 @@ export const loginUser = (req, res) => {
     let password = req.body.password;
 
     User.findOne({
-        'email': email,
-        'password': crypto.SHA256(password).toString(crypto.enc.SHA256),
+        email: email,
+        password: crypto.SHA256(password).toString(crypto.enc.SHA256),
     })
         .then( user => {
             if (!user) {
@@ -22,12 +23,17 @@ export const loginUser = (req, res) => {
                     user: user,
                 });
             } else {
-                res.status(200);
+                jwt.sign({
+                    user: user
+                }, process.env.JWT_SECRET_KEY, (error, token) => {
+                    res.status(200);
 
-                return res.json({
-                    status: '200',
-                    message: 'User has been found',
-                    user: user,
+                    return res.json({
+                        status: '200',
+                        message: 'User has been found',
+                        user: user,
+                        token: token,
+                    });
                 });
             }
         })
