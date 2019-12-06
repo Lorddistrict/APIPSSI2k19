@@ -1,6 +1,5 @@
 # Folders
 node_modules/
-data/db/
 
 # Config files
 .env
